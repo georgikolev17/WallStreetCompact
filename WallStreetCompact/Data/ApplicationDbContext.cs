@@ -14,5 +14,6 @@ namespace WallStreetCompact.Data
         public DbSet<CompanyOverview> CompanyOverviews { get; set; }
         public DbSet<Portfolio> Portfolios { get; set; }
         public DbSet<Stock> Stocks { get; set; }
+        public DbSet<News> News { get; set; }
     }
 }

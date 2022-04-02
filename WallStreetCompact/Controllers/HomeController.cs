@@ -1,20 +1,26 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using WallStreetCompact.Models;
+using WallStreetCompact.Services;
 
 namespace WallStreetCompact.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IDataSeeder dataSeeder;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IDataSeeder dataSeeder)
         {
             _logger = logger;
+            this.dataSeeder=dataSeeder;
         }
 
         public IActionResult Index()
         {
+
+            dataSeeder.SeedNews();
+
             return View();
         }
 
