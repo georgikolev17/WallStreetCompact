@@ -10,8 +10,9 @@ using WallStreetCompact.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddSingleton<IDataSeeder, DataSeeder>();
+builder.Services.AddSingleton<IStocksService, StocksService>();
 builder.Services.AddSingleton<INewsService, NewsService>();
+builder.Services.AddSingleton<IDataSeeder, DataSeeder>();
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<WallStreetCompactContext>(options =>
     options.UseSqlServer(connectionString));builder.Services.AddDbContext<ApplicationDbContext>(options =>

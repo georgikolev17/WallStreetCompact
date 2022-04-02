@@ -22,6 +22,7 @@ namespace WallStreetCompact.Controllers
         {
 
             await dataSeeder.SeedNews();
+            // await dataSeeder.SeedStocks();
 
             return View();
         }

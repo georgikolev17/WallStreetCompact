@@ -5,7 +5,7 @@ namespace WallStreetCompact.Models
 {
     public class Stock
     {
-        [Required]
+        //[Required]
         public int Id { get; set; }
 
         public string Ticker { get; set; }
@@ -23,10 +23,5 @@ namespace WallStreetCompact.Models
         public Int64 NumberOfTransactions { get; set; }
         
         public string Date { get; set; }
-
-        [Required]
-        public int PortfolioId { get; set; }
-
-        public virtual Portfolio Portfolio { get; set; }
     }
 }
