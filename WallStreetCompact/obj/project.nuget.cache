@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "tm/KLI2OSRcgoaDjC3DtYYwZam81WHpxifHXsinTCHdFZ+NLf+btMbUkfIa+dzFTOXiLnE0jwCleo8MFYwtDlg==",
+  "dgSpecHash": "19TkoaPWz2zBV2HrIt+VVP0Kz/Ldp/YFCqstRJ/z8NQqvagVlSy6OAkrPaJA/A2mdA4JbK9CNgfE156JdhNvaA==",
   "success": true,
-  "projectFilePath": "D:\\G.Kolev\\WallStreetCompact\\WallStreetCompact\\WallStreetCompact.csproj",
+  "projectFilePath": "D:\\Hackaton\\WallStreetCompact\\WallStreetCompact\\WallStreetCompact.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\UseR\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\UseR\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using WallStreetCompact.Models;
 
 namespace WallStreetCompact.Data
 {
@@ -9,5 +10,9 @@ namespace WallStreetCompact.Data
             : base(options)
         {
         }
+
+        public DbSet<CompanyOverview> CompanyOverviews { get; set; }
+        public DbSet<Portfolio> Portfolios { get; set; }
+        public DbSet<Stock> Stocks { get; set; }
     }
 }
