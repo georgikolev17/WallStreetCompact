@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "19TkoaPWz2zBV2HrIt+VVP0Kz/Ldp/YFCqstRJ/z8NQqvagVlSy6OAkrPaJA/A2mdA4JbK9CNgfE156JdhNvaA==",
+  "dgSpecHash": "ZV2VdHMQmsED9c28VJQPFwk+mKZ3zREWWgnABhSHXq3As0YFd5BLVj9Jfvi7n10vYQm3pWXvuqt/XOjUWurFXw==",
   "success": true,
   "projectFilePath": "D:\\Hackaton\\WallStreetCompact\\WallStreetCompact\\WallStreetCompact.csproj",
   "expectedPackageFiles": [
@@ -89,6 +89,7 @@
     "C:\\Users\\UseR\\.nuget\\packages\\nuget.projectmodel\\5.11.0\\nuget.projectmodel.5.11.0.nupkg.sha512",
     "C:\\Users\\UseR\\.nuget\\packages\\nuget.protocol\\5.11.0\\nuget.protocol.5.11.0.nupkg.sha512",
     "C:\\Users\\UseR\\.nuget\\packages\\nuget.versioning\\5.11.0\\nuget.versioning.5.11.0.nupkg.sha512",
+    "C:\\Users\\UseR\\.nuget\\packages\\numsharp\\0.30.0\\numsharp.0.30.0.nupkg.sha512",
     "C:\\Users\\UseR\\.nuget\\packages\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\UseR\\.nuget\\packages\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\UseR\\.nuget\\packages\\runtime.fedora.24-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.fedora.24-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",

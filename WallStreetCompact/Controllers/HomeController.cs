@@ -16,10 +16,10 @@ namespace WallStreetCompact.Controllers
             this.dataSeeder=dataSeeder;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
 
-            dataSeeder.SeedNews();
+            await dataSeeder.SeedNews();
 
             return View();
         }

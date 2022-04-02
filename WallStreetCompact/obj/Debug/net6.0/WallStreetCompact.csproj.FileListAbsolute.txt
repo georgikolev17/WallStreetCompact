@@ -562,3 +562,4 @@ D:\Hackaton\WallStreetCompact\WallStreetCompact\bin\Debug\net6.0\Data\PolygonSto
 D:\Hackaton\WallStreetCompact\WallStreetCompact\bin\Debug\net6.0\Data\PolygonStockData\sta_2-25-2022.json
 D:\Hackaton\WallStreetCompact\WallStreetCompact\bin\Debug\net6.0\Data\PolygonStockData\sta_2-28-2022.json
 D:\Hackaton\WallStreetCompact\WallStreetCompact\bin\Debug\net6.0\Data\PolygonStockData\sta_3-1-2022.json
+D:\Hackaton\WallStreetCompact\WallStreetCompact\bin\Debug\net6.0\NumSharp.dll
