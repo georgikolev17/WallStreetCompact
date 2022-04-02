@@ -1,5 +1,9 @@
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using WallStreetCompact.Data;
 using WallStreetCompact.Services;
 
@@ -45,3 +49,4 @@ app.MapControllerRoute(
 app.MapRazorPages();
 
 app.Run();
+

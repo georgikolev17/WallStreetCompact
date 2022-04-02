@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using WallStreetCompact.Models;
 using WallStreetCompact.Services;
 

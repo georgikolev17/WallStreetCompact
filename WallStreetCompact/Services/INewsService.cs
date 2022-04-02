@@ -1,4 +1,5 @@
-﻿using WallStreetCompact.Models;
+﻿using System.Threading.Tasks;
+using WallStreetCompact.Models;
 
 namespace WallStreetCompact.Services
 {
