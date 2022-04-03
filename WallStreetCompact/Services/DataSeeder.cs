@@ -17,11 +17,13 @@ namespace WallStreetCompact.Services
     {
         private readonly INewsService newsService;
         private readonly IStocksService stocksService;
+        private readonly ICompanyOverviewService companyOverviewService;
 
-        public DataSeeder(INewsService newsService, IStocksService stocksService)
+        public DataSeeder(INewsService newsService, IStocksService stocksService, ICompanyOverviewService companyOverviewService)
         {
             this.newsService = newsService;
             this.stocksService=stocksService;
+            this.companyOverviewService=companyOverviewService;
         }
 
         public Dictionary<string, string> ReadFiles()
@@ -58,6 +60,17 @@ namespace WallStreetCompact.Services
                 {
                     await this.stocksService.CreateStockAsync(stock);
                 }
+            }
+        }
+
+        public async Task SeedOverviewCompanies()
+        {
+            var companyOvewviewFiles = readCompanyOverviewFiles();
+            var companyOverview = ProcessCompanyOverviewData(companyOvewviewFiles);
+
+            foreach (var c in companyOverview)
+            {
+                await this.companyOverviewService.CreateCompanyOverviewAsync(c);
             }
         }
 
@@ -252,6 +265,87 @@ namespace WallStreetCompact.Services
             }
 
             return dateString;
+        }
+
+        public static List<string> readCompanyOverviewFiles()
+        {
+            List<string> endResult = new List<string>();
+
+            string path = Path.Combine(Environment.CurrentDirectory, @"Data", @"CompanyOverview");
+            string[] files = { "AAPL.json", "TSLA.json", "GOOGL.json" };
+            foreach (string filename in files)
+            {
+                endResult.Add(File.ReadAllText(Path.Combine(path, filename)));
+            }
+
+            return endResult;
+        }
+
+        public static List<CompanyOverview> ProcessCompanyOverviewData(List<string> dList)
+        {
+            List<CompanyOverview> parsedData = new();
+            foreach (string response in dList)
+            {
+                var Data = JsonSerializer.Deserialize<Dictionary<string, string>>(response) ??
+                           throw new InvalidOperationException();
+                string tempTicker = Data["Symbol"];
+
+                string AssetType = Data["AssetType"];
+                string tempName = Data["Name"];
+                string tempDescription = Data["Description"];
+                string tempCIK = Data["CIK"];
+                string tempExchange = Data["Exchange"];
+                string tempCurrency = Data["Currency"];
+                string tempCountry = Data["Country"];
+                string tempSector = Data["Sector"];
+                string tempIndustry = Data["Industry"];
+                string tempAddress = Data["Address"];
+                string tempMarketCapitalization = Data["MarketCapitalization"];
+                string tempEBITDA = Data["EBITDA"];
+                string tempDividendPerShare = Data["DividendPerShare"];
+                string tempDividendYield = Data["DividendYield"];
+                string tempRevenuePerShareTTM = Data["RevenuePerShareTTM"];
+                string tempProfitMargin = Data["ProfitMargin"];
+                string tempAnalystTargetPrice = Data["AnalystTargetPrice"];
+                string tempEVToRevenue = Data["EVToRevenue"];
+                string tempEVToEBITDA = Data["EVToEBITDA"];
+                string tempFiftyTwoWeekHigh = Data["52WeekHigh"];
+                string tempFiftyTwoWeekLow = Data["52WeekLow"];
+                string tempFiftyDayMovingAverage = Data["50DayMovingAverage"];
+                string tempTwoHundredDayMovingAverage = Data["200DayMovingAverage"];
+                string tempSharesOutstanding = Data["SharesOutstanding"];
+
+                CompanyOverview currentStock = new(
+                    tempTicker,
+                    AssetType,
+                    tempName,
+                    tempDescription,
+                    tempCIK,
+                    tempExchange,
+                    tempCurrency,
+                    tempCountry,
+                    tempSector,
+                    tempIndustry,
+                    tempAddress,
+                    tempMarketCapitalization,
+                    tempEBITDA,
+                    tempDividendPerShare,
+                    tempDividendYield,
+                    tempRevenuePerShareTTM,
+                    tempProfitMargin,
+                    tempAnalystTargetPrice,
+                    tempEVToRevenue,
+                    tempEVToEBITDA,
+                    tempFiftyTwoWeekHigh,
+                    tempFiftyTwoWeekLow,
+                    tempFiftyDayMovingAverage,
+                    tempTwoHundredDayMovingAverage,
+                    tempSharesOutstanding
+                );
+                parsedData.Add(currentStock);
+            }
+
+            return parsedData;
         }
     }
 }

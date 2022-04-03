@@ -12,6 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddSingleton<IStocksService, StocksService>();
 builder.Services.AddSingleton<INewsService, NewsService>();
+builder.Services.AddSingleton<ICompanyOverviewService, CompanyOverviewService>();
 builder.Services.AddSingleton<IDataSeeder, DataSeeder>();
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<WallStreetCompactContext>(options =>

@@ -21,8 +21,9 @@ namespace WallStreetCompact.Controllers
         public async Task<IActionResult> Index()
         {
 
-            await dataSeeder.SeedNews();
+            // await dataSeeder.SeedNews();
             // await dataSeeder.SeedStocks();
+            await dataSeeder.SeedOverviewCompanies();
 
             return View();
         }
