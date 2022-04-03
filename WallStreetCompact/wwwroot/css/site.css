@@ -15,4 +15,80 @@ html {
 
 body {
   margin-bottom: 60px;
+  background-color: #353b48;
+  color: white;
+}
+
+hr {
+  border-color: #2d3436;
+  background-color: #2d3436;
+  height: 4px;
+}
+
+nav {
+  box-shadow: 0 128px 256px 0 rgba(0,0,0,.2);
+  background-color: #2d3436; 
+}
+
+.main-navigation.navigation-clone {
+  -webkit-box-shadow: 55px 10px 5px 0px rgb(0, 0, 0,.2);
+  -moz-box-shadow: 55px 10px 5px 0px rgb(0, 0, 0,.2);
+  box-shadow: 55px 10px 5px 0px rgb(0, 0, 0,.2);
+}
+
+.rightside, .leftside{
+  padding: 0;
+  height: 100vh;
+  margin-top: -1em;
+}
+
+.leftside{
+  width: 70%;
+}
+
+.rightside{
+  width: 30%;
+  border-left-style: solid;
+  border-left-width: 4px;
+  border-left-color: #2d3436;
+}
+
+.portfolioStock{
+  padding: 4px;
+  width: 100%;
+  border-color: #2d3436;
+  font-size: 26px;
+}
+
+ .fade-in-text{
+   display: inline-block;
+   font-family: Arial, Helvetica, sans-serif;
+   margin-top: 30px;
+   font-size: 25px;
+   color: white;
+   animation: fadeIn linear 3s;
+   -webkit-animation: fadeIn linear 3s;
+   -moz-animation: fadeIn linear 3s;
+   -o-animation: fadeIn linear 3s;
+   -ms-animation: fadeIn linear 3s;
+ }
+
+@keyframes fadeIn{
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-moz-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-webkit-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-o-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
 }

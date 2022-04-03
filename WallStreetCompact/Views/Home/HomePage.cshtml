@@ -1,0 +1,33 @@
+@page
+@model WallStreetCompact.Views.Home.HomePage
+
+<div class="row">
+    <div class="leftside">
+        <div>
+            <div>
+                <p style="margin: 30px; font-size: 34px; color: #40739e">Tesla
+            </div>
+            <div>
+                <div id="linechart_material" style="width: 400px"></div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="rightside">
+        <h1 align="center" style="margin: 20px">Portfolio</h1>
+        <hr style="border-color: #2d3436; background-color: #2d3436; height: 4px; width: 130%">
+        <div class="portfolioStock">
+            <p align="left" style="margin-left: 16px; margin-bottom: -4px">$TSLA    1,258 USD
+        </div>
+        <hr style="border-color: #2d3436; background-color: #2d3436; height: 4px; width: 130%">
+        <div class="portfolioStock">
+            <p align="left" style="margin-left: 16px; margin-bottom: -4px">$AAPL   14,490 USD
+        </div>
+        <hr style="border-color: #2d3436; background-color: #2d3436; height: 4px; width: 130%">
+        <div class="portfolioStock">
+            <p align="left" style="margin-left: 16px; margin-bottom: -4px">$GOOGL   3 892 USD
+        </div>
+        <hr style="border-color: #2d3436; background-color: #2d3436; height: 4px; width: 130%">
+        <div id="piechart" style="width: 675px; height: 375px;"></div>
+    </div>
+</div>
