@@ -50,6 +50,12 @@
           ]);
     
           var options = {
+            hAxis:{
+                textStyle:{color:'white'}
+            },
+            vAxis:{
+                textStyle:{color:'white'}
+            },
             chartArea:{
                 backgroundColor:'transparent'
             },
@@ -59,7 +65,10 @@
             },
             width: 450,
             height: 250,
-            backgroundColor: 'transparent'
+            backgroundColor: 'transparent',
+            legend:{
+                textStyle: {color: 'white'}
+            }
           };
     
           var chart = new google.charts.Line(document.getElementById('linechart_material'));

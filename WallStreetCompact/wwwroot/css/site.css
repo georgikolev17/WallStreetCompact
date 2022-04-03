@@ -60,6 +60,17 @@ nav {
   font-size: 26px;
 }
 
+.columns {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.column {
+  flex: 33.33%;
+}
+
  .fade-in-text{
    display: inline-block;
    font-family: Arial, Helvetica, sans-serif;
