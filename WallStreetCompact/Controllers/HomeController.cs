@@ -15,14 +15,16 @@ namespace WallStreetCompact.Controllers
         private readonly IStocksService stocksService;
         private readonly INewsService newsService;
         private readonly ICompanyOverviewService companyOverviewService;
+        private readonly IPredictionService predictionService;
 
-        public HomeController(ILogger<HomeController> logger, IDataSeeder dataSeeder, IStocksService stocksService, INewsService newsService, ICompanyOverviewService companyOverviewService)
+        public HomeController(ILogger<HomeController> logger, IDataSeeder dataSeeder, IStocksService stocksService, INewsService newsService, ICompanyOverviewService companyOverviewService, IPredictionService predictionService)
         {
             _logger = logger;
             this.dataSeeder=dataSeeder;
             this.stocksService=stocksService;
             this.newsService=newsService;
             this.companyOverviewService=companyOverviewService;
+            this.predictionService=predictionService;
         }
 
         public async Task<IActionResult> Index()
@@ -31,6 +33,7 @@ namespace WallStreetCompact.Controllers
             // await dataSeeder.SeedNews();
             // await dataSeeder.SeedStocks();
             // await dataSeeder.SeedOverviewCompanies();
+            await dataSeeder.SeedPredictions();
 
             if (this.User.Identity.IsAuthenticated)
             {
@@ -39,6 +42,7 @@ namespace WallStreetCompact.Controllers
                     Stocks = this.stocksService.GetAllStocks(),
                     News = this.newsService.GetAllNews(),
                     CompanyOverviews = this.companyOverviewService.GetAllCompanyOverviews(),
+                    Predictions = this.predictionService.GetAllPredictions(),
                 };
 
                 return View("HomePage", portfolioModel);

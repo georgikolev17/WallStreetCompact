@@ -18,12 +18,14 @@ namespace WallStreetCompact.Services
         private readonly INewsService newsService;
         private readonly IStocksService stocksService;
         private readonly ICompanyOverviewService companyOverviewService;
+        private readonly IPredictionService predictionService;
 
-        public DataSeeder(INewsService newsService, IStocksService stocksService, ICompanyOverviewService companyOverviewService)
+        public DataSeeder(INewsService newsService, IStocksService stocksService, ICompanyOverviewService companyOverviewService, IPredictionService predictionService)
         {
             this.newsService = newsService;
             this.stocksService=stocksService;
             this.companyOverviewService=companyOverviewService;
+            this.predictionService=predictionService;
         }
 
         public Dictionary<string, string> ReadFiles()
@@ -346,6 +348,19 @@ namespace WallStreetCompact.Services
             }
 
             return parsedData;
+        }
+
+        public async Task SeedPredictions()
+        {
+            string path = Path.Combine(Environment.CurrentDirectory, @"Services/SentimentNPYs",
+                @"Predictions.npy");
+            
+            var xNdArray = np.load(path).ToArray<float>();
+
+            for (int i = 0; i < xNdArray.Length; i++)
+            {
+                await this.predictionService.CreatePredictionAsync((double) xNdArray[i], i+1);
+            }
         }
     }
 }
