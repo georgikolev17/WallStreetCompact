@@ -9,9 +9,9 @@
           function drawChart() {
             var data = google.visualization.arrayToDataTable([
               ['Stock', 'Money'],
-              ['Tesla',     1258],
-              ['Apple',      14490],
-              ['Google',  3892]
+              ['Tesla',  1243],
+              ['Apple',  182],
+              ['Google', 3030]
             ]);
             
             var options = {
@@ -37,16 +37,16 @@
           data.addColumn('number', 'Open price');
     
           data.addRows([
-            [1,  37.8],
-            [2,  30.9],
-            [3,  25.4],
-            [4,  11.7],
-            [5,  11.9],
-            [6,   8.8],
-            [7,   7.6],
-            [8,  12.3],
-            [9,  16.9],
-            [10, 12.8]
+            [1, @Model.Stock[0]],
+            [2, @Model.Stock[1]],
+            [3, @Model.Stock[2]],
+            [4, @Model.Stock[3]],
+            [5, @Model.Stock[4]],
+            [6, @Model.Stock[5]],
+            [7, @Model.Stock[6]],
+            [8, @Model.Stock[7]],
+            [9, @Model.Stock[8]],
+            [10,@Model.Stock[9]]
           ]);
     
           var options = {
@@ -71,7 +71,107 @@
             }
           };
     
-          var chart = new google.charts.Line(document.getElementById('linechart_material'));
+          var chart = new google.charts.Line(document.getElementById('linechart_material1'));
+    
+          chart.draw(data, google.charts.Line.convertOptions(options));
+        }
+        </script>
+        <script type="text/javascript">
+          google.charts.load('current', {'packages':['line']});
+          google.charts.setOnLoadCallback(drawChart);
+    
+        function drawChart() {
+    
+          var data = new google.visualization.DataTable();
+          data.addColumn('number', 'Day');
+          data.addColumn('number', 'Open price');
+
+        data.addRows([
+            [2,  @Model.Stock[0]],
+            [1,  @Model.Stock[1]],
+            [3,  @Model.Stock[2]],
+            [4,  @Model.Stock[3]],
+            [5,  @Model.Stock[4]],
+            [6,  @Model.Stock[5]],
+            [7,  @Model.Stock[6]],
+            [8,  @Model.Stock[7]],
+            [9,  @Model.Stock[8]],
+            [10, @Model.Stock[9]]
+          ]);
+    
+          var options = {
+            hAxis:{
+                textStyle:{color:'white'}
+            },
+            vAxis:{
+                textStyle:{color:'white'}
+            },
+            chartArea:{
+                backgroundColor:'transparent'
+            },
+            chart: {
+              title: 'Price',
+              subtitle: 'in dollars (USD)'
+            },
+            width: 450,
+            height: 250,
+            backgroundColor: 'transparent',
+            legend:{
+                textStyle: {color: 'white'}
+            }
+          };
+    
+          var chart = new google.charts.Line(document.getElementById('linechart_material2'));
+    
+          chart.draw(data, google.charts.Line.convertOptions(options));
+        }
+        </script>
+        <script type="text/javascript">
+          google.charts.load('current', {'packages':['line']});
+          google.charts.setOnLoadCallback(drawChart);
+    
+        function drawChart() {
+    
+          var data = new google.visualization.DataTable();
+          data.addColumn('number', 'Day');
+          data.addColumn('number', 'Open price');
+    
+                    data.addRows([
+            [1, @Model.Stock[0]],
+            [2, @Model.Stock[1]],
+            [3, @Model.Stock[2]],
+            [4, @Model.Stock[3]],
+            [5, @Model.Stock[4]],
+            [6, @Model.Stock[5]],
+            [7, @Model.Stock[6]],
+            [8, @Model.Stock[7]],
+            [9, @Model.Stock[8]],
+            [10,@Model.Stock[9]]
+          ]);
+    
+          var options = {
+            hAxis:{
+                textStyle:{color:'white'}
+            },
+            vAxis:{
+                textStyle:{color:'white'}
+            },
+            chartArea:{
+                backgroundColor:'transparent'
+            },
+            chart: {
+              title: 'Price',
+              subtitle: 'in dollars (USD)'
+            },
+            width: 450,
+            height: 250,
+            backgroundColor: 'transparent',
+            legend:{
+                textStyle: {color: 'white'}
+            }
+          };
+    
+          var chart = new google.charts.Line(document.getElementById('linechart_material3'));
     
           chart.draw(data, google.charts.Line.convertOptions(options));
         }

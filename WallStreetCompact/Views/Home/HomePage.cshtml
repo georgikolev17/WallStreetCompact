@@ -1,49 +1,59 @@
-@page
-@model WallStreetCompact.ViewModels.PortfolioViewModel
+﻿@model WallStreetCompact.ViewModels.PortfolioViewModel
+@{
+    int i = 0;
+}
 
 <div class="row">
     <div class="leftside">
         <div>
-            <div>
-                <p style="margin: 12px; font-size: 20px; color: #40739e">Tesla
-            </div>
-            <div class="columns">
-                <div class="column" style="margin-left: 10px">
-                    <p style="font-size: 18px">Prediction for stock change: Short
-                    <p style="font-size: 18px">News Sentiment: Negative
-                    <p style="font-size: 12px">Market cap.:
-                    <p style="font-size: 12px">Divident yield:
-                    <p style="font-size: 12px">Divident per share:
-                    <p style="font-size: 12px">Profit margin:
-                    <p style="font-size: 12px">EBITDA:
-                </div>
-                <div class="column">
-                    <div id="linechart_material" style="width: 400px"></div>
-                </div>
-                <hr style="border-color: #2d3436; background-color: #2d3436; height: 4px; width: 110%">
-            </div>
+                    @foreach (var company in Model.CompanyOverviews)
+                    {
+                        i++;
+                        <div>
+                            <p style="margin: 12px; font-size: 20px; color: #40739e">@company.Name
+                        </div>
+                        <div class="columns">
+                        <div class="column" style="margin-left: 10px">
+                        <p style="font-size: 18px">Prediction for stock change: Short</p>
+                        @if (Model.News.Where(x => x.Ticker == company.Ticker).Average(x => x.Sentiment) <= 0.2m && Model.News.Where(x => x.Ticker == company.Ticker).Average(x => x.Sentiment) >= -0.2m)
+                        {
+                            <p style="font-size: 18px">News Sentiment: Neutral</p>
+                        }
+                        @if (Model.News.Where(x => x.Ticker == company.Ticker).Average(x => x.Sentiment) > 0.2m)
+                        {
+                            <p style="font-size: 18px">News Sentiment: Positive</p>
+                        }
+                        @if (Model.News.Where(x => x.Ticker == company.Ticker).Average(x => x.Sentiment) < -0.2m)
+                        {
+                            <p style="font-size: 18px">News Sentiment: Negative</p>
+                        }
+                        <p style="font-size: 12px">Market cap.: @company.MarketCapitalization</p>
+                        <p style="font-size: 12px">Divident yield: @company.DividendYield</p>
+                        <p style="font-size: 12px">Divident per share: @company.DividendPerShare</p>
+                        <p style="font-size: 12px">Profit margin: @company.ProfitMargin</p>
+                        <p style="font-size: 12px">EBITDA: @company.EBITDA</p>
+                        </div>
+                        <div class="column">
+                            <div id="linechart_material@(i)" style="width: 400px"></div>
+                        </div>
+                        <hr style="border-color: #2d3436; background-color: #2d3436; height: 4px; width: 110%">
+                        </div>
 
-            <div>
-                <div id="linechart_material" style="width: 400px"></div>
-            </div>
+                        
+                    }
         </div>
     </div>
     
     <div class="rightside">
         <h1 align="center" style="margin: 20px">Portfolio</h1>
         <hr style="border-color: #2d3436; background-color: #2d3436; height: 4px; width: 130%">
-        <div class="portfolioStock">
-            <p align="left" style="margin-left: 16px; margin-bottom: -4px">$TSLA    1,258 USD
-        </div>
-        <hr style="border-color: #2d3436; background-color: #2d3436; height: 4px; width: 130%">
-        <div class="portfolioStock">
-            <p align="left" style="margin-left: 16px; margin-bottom: -4px">$AAPL   14,490 USD
-        </div>
-        <hr style="border-color: #2d3436; background-color: #2d3436; height: 4px; width: 130%">
-        <div class="portfolioStock">
-            <p align="left" style="margin-left: 16px; margin-bottom: -4px">$GOOGL   3 892 USD
-        </div>
-        <hr style="border-color: #2d3436; background-color: #2d3436; height: 4px; width: 130%">
+        @foreach (var company in Model.CompanyOverviews)
+        {
+            <div class="portfolioStock">
+                <p align="left" style="margin-left: 16px; margin-bottom: -4px">$@company.Ticker @company.FiftyTwoWeekHigh USD
+            </div>
+            <hr style="border-color: #2d3436; background-color: #2d3436; height: 4px; width: 130%">
+        }
         <div id="piechart" style="width: 675px; height: 375px;"></div>
     </div>
 </div>
