@@ -19,5 +19,10 @@ namespace WallStreetCompact.Services
             await this.db.AddAsync(companyOverview);
             await this.db.SaveChangesAsync();
         }
+
+        public List<CompanyOverview> GetAllCompanyOverviews()
+        {
+            return this.db.CompanyOverviews.ToList();
+        }
     }
 }

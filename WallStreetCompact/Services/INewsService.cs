@@ -6,5 +6,7 @@ namespace WallStreetCompact.Services
     public interface INewsService
     {
         Task CreateNewsAsync(News news);
+
+        List<News> GetAllNews();
     }
 }

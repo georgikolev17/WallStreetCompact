@@ -5,5 +5,7 @@ namespace WallStreetCompact.Services
     public interface IStocksService
     {
         Task CreateStockAsync(Stock stock);
+
+        List<Stock> GetAllStocks();
     }
 }
