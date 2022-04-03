@@ -49,7 +49,7 @@ namespace WallStreetCompact.Controllers
 
         public IActionResult Privacy()
         {
-            return View();
+            return View("HomePage");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

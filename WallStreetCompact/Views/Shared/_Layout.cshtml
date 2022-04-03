@@ -1,48 +1,113 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    @*CHARTS*@
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+          google.charts.load("current", {packages:["corechart"]});
+          google.charts.setOnLoadCallback(drawChart);
+          function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+              ['Stock', 'Money'],
+              ['Tesla',     1258],
+              ['Apple',      14490],
+              ['Google',  3892]
+            ]);
+            
+            var options = {
+              backgroundColor: "transparent",
+              is3D: false,
+              is2D: true,
+              legend: {textStyle:{color:'white'}}
+            };
+    
+            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+            chart.draw(data, options);
+          }
+        </script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+          google.charts.load('current', {'packages':['line']});
+          google.charts.setOnLoadCallback(drawChart);
+    
+        function drawChart() {
+    
+          var data = new google.visualization.DataTable();
+          data.addColumn('number', 'Day');
+          data.addColumn('number', 'Open price');
+    
+          data.addRows([
+            [1,  37.8],
+            [2,  30.9],
+            [3,  25.4],
+            [4,  11.7],
+            [5,  11.9],
+            [6,   8.8],
+            [7,   7.6],
+            [8,  12.3],
+            [9,  16.9],
+            [10, 12.8]
+          ]);
+    
+          var options = {
+            chartArea:{
+                backgroundColor:'transparent'
+            },
+            chart: {
+              title: 'Price',
+              subtitle: 'in dollars (USD)'
+            },
+            width: 450,
+            height: 250,
+            backgroundColor: 'transparent'
+          };
+    
+          var chart = new google.charts.Line(document.getElementById('linechart_material'));
+    
+          chart.draw(data, google.charts.Line.convertOptions(options));
+        }
+        </script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="C:\Users\ме\RiderProjects\WallStreetCompact\WallStreetCompact\wwwroot\css\site.css">
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>@ViewData["Title"] - WallStreetCompact</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/WallStreetCompact.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="~/WallStreetCompact.styles.css" asp-append-version="true"/>
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">WallStreetCompact</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                    <partial name="_LoginPartial" />
-                </div>
+<header>
+    
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-darkgray box-shadow mb-3">
+        <div class="container-fluid">
+            <a class="navbar-brand" style="margin-left: 4em; color: white; font-family: 'Gill Sans Ultra Bold'">WSC</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index"></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">HERE</a>
+                    </li>
+                </ul>
+                <partial name="_LoginPartial"/>
             </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2022 - WallStreetCompact - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    </nav>
+</header>
+
+<div class="container">
+    <main role="main" class="pb-3">
+        @RenderBody()
+    </main>
+</div>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
