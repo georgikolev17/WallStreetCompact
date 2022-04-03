@@ -28,7 +28,8 @@
         public string FiftyDayMovingAverage { get; set; }
         public string TwoHundredDayMovingAverage { get; set; }
         public string SharesOutstanding { get; set; }
-    public CompanyOverview(string ticker, string assetType, string name, string description, string cik,
+
+        public CompanyOverview(string ticker, string assetType, string name, string description, string cik,
             string exchange, string currency, string country, string sector, string industry, string address,
             string marketCapitalization, string ebitda, string dividendPerShare, string dividendYield,
             string revenuePerShareTtm, string profitMargin, string analystTargetPrice,

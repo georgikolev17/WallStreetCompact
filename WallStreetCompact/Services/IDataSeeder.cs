@@ -13,5 +13,7 @@ namespace WallStreetCompact.Services
         Task SeedStocks();
 
         Task SeedOverviewCompanies();
+
+        Task SeedPredictions();
     }
 }

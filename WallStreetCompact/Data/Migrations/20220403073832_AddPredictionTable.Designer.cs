@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WallStreetCompact.Data;
 
@@ -11,9 +12,10 @@ using WallStreetCompact.Data;
 namespace WallStreetCompact.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220403073832_AddPredictionTable")]
+    partial class AddPredictionTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -393,27 +395,6 @@ namespace WallStreetCompact.Data.Migrations
                     b.ToTable("Portfolios");
                 });
 
-            modelBuilder.Entity("WallStreetCompact.Models.Prediction", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("CompanyOverviewId")
-                        .HasColumnType("int");
-
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CompanyOverviewId");
-
-                    b.ToTable("Predictions");
-                });
-
             modelBuilder.Entity("WallStreetCompact.Models.Stock", b =>
                 {
                     b.Property<int>("Id")
@@ -511,17 +492,6 @@ namespace WallStreetCompact.Data.Migrations
                         .HasForeignKey("UserId1");
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("WallStreetCompact.Models.Prediction", b =>
-                {
-                    b.HasOne("WallStreetCompact.Models.CompanyOverview", "CompanyOverview")
-                        .WithMany()
-                        .HasForeignKey("CompanyOverviewId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("CompanyOverview");
                 });
 #pragma warning restore 612, 618
         }

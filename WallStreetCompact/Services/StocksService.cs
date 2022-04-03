@@ -19,5 +19,10 @@ namespace WallStreetCompact.Services
             await this.db.Stocks.AddAsync(stock);
             await this.db.SaveChangesAsync();
         }
+
+        public List<Stock> GetAllStocks()
+        {
+            return this.db.Stocks.ToList();
+        }
     }
 }

@@ -4,25 +4,29 @@ using WallStreetCompact.Models;
 
 namespace WallStreetCompact.Services
 {
-    public class CompanyOverviewService : ICompanyOverviewService
+    public class PredictionService : IPredictionService
     {
         private readonly ApplicationDbContext db;
-        public CompanyOverviewService()
+        public PredictionService()
         {
             var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
             optionsBuilder.UseSqlServer("Server=.\\SQLEXPRESS;Database=aspnet-WallStreetCompact-E55E9634-0CC7-4F1B-B2A7-FB71238526D3;Trusted_Connection=True;MultipleActiveResultSets=true");
             this.db= new ApplicationDbContext(optionsBuilder.Options);
         }
 
-        public async Task CreateCompanyOverviewAsync(CompanyOverview companyOverview)
+        public async Task CreatePredictionAsync(double price, int id)
         {
-            await this.db.AddAsync(companyOverview);
+            await this.db.AddAsync(new Prediction
+            {
+                Price = price,
+                CompanyOverviewId = id,
+            });
             await this.db.SaveChangesAsync();
         }
 
-        public List<CompanyOverview> GetAllCompanyOverviews()
+        public List<Prediction> GetAllPredictions()
         {
-            return this.db.CompanyOverviews.ToList();
+            return this.db.Predictions.ToList();
         }
     }
 }

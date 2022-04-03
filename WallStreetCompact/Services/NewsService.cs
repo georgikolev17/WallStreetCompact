@@ -21,5 +21,10 @@ namespace WallStreetCompact.Services
             await this.db.News.AddAsync(news);
             await this.db.SaveChangesAsync();
         }
+
+        public List<News> GetAllNews()
+        {
+            return this.db.News.ToList();
+        }
     }
 }
