@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WallStreetCompact.Data;
 
@@ -11,9 +12,10 @@ using WallStreetCompact.Data;
 namespace WallStreetCompact.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220402125915_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -236,11 +238,14 @@ namespace WallStreetCompact.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("AnalystTargetPrice")
+                    b.Property<decimal>("AnalystTargetPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("AssetType")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("AssetType")
+                    b.Property<string>("BookValue")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -272,14 +277,6 @@ namespace WallStreetCompact.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("EVToEBITDA")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("EVToRevenue")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Exchange")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -296,7 +293,15 @@ namespace WallStreetCompact.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("FiscalYearEnd")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Industry")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LatestQuarter")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -308,11 +313,11 @@ namespace WallStreetCompact.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ProfitMargin")
+                    b.Property<string>("PEGRatio")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("RevenuePerShareTTM")
+                    b.Property<string>("PERatio")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -320,9 +325,8 @@ namespace WallStreetCompact.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("SharesOutstanding")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("StockId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Ticker")
                         .IsRequired()
@@ -334,42 +338,9 @@ namespace WallStreetCompact.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("StockId");
+
                     b.ToTable("CompanyOverviews");
-                });
-
-            modelBuilder.Entity("WallStreetCompact.Models.News", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("ArticleUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<decimal>("Sentiment")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("Ticker")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Time")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("News");
                 });
 
             modelBuilder.Entity("WallStreetCompact.Models.Portfolio", b =>
@@ -420,6 +391,9 @@ namespace WallStreetCompact.Data.Migrations
                     b.Property<decimal>("Open")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<int>("PortfolioId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Ticker")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -428,6 +402,8 @@ namespace WallStreetCompact.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("PortfolioId");
 
                     b.ToTable("Stocks");
                 });
@@ -483,6 +459,17 @@ namespace WallStreetCompact.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("WallStreetCompact.Models.CompanyOverview", b =>
+                {
+                    b.HasOne("WallStreetCompact.Models.Stock", "Stock")
+                        .WithMany()
+                        .HasForeignKey("StockId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Stock");
+                });
+
             modelBuilder.Entity("WallStreetCompact.Models.Portfolio", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
@@ -490,6 +477,22 @@ namespace WallStreetCompact.Data.Migrations
                         .HasForeignKey("UserId1");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("WallStreetCompact.Models.Stock", b =>
+                {
+                    b.HasOne("WallStreetCompact.Models.Portfolio", "Portfolio")
+                        .WithMany("Stocks")
+                        .HasForeignKey("PortfolioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Portfolio");
+                });
+
+            modelBuilder.Entity("WallStreetCompact.Models.Portfolio", b =>
+                {
+                    b.Navigation("Stocks");
                 });
 #pragma warning restore 612, 618
         }
